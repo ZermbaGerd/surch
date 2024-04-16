@@ -1,11 +1,98 @@
 <head>
+    <link rel="stylesheet" href="style.css" />
 
-</head>>
+    <!-- 
+        Stops your browser from trying to move back to scroll spot on reload 
+        Got this from here: https://stackoverflow.com/a/46722645
+    -->
+    <script>history.scrollRestoration = "manual"</script>
+
+</head>
 
 <body>
 
-    <h1> Welcome to my HIST394 final project</h1>
+    <div id = "titleBox"> 
+        <h1> Welcome to my HIST394 final project </h1>
+    </div>
+
     <script>
 
+        // Values for size of each tiktok - make sure these align with CSS
+        const tikHeight = 480;
+        const tikWidth = 270;
+        const tikMargin = 20;
+
+        // the bottom tiktok
+        var finalTok = null;
+
+        // pixel amount for us to add new element after
+        var maxScroll = tikHeight;
+
+
+        // Represents a social media post
+        class TikTok {
+
+            constructor() {
+                this.img = this.createSelf();
+            }
+
+            // creates and returns an html element associated with this class
+            createSelf() {
+                const yart = document.createElement("div");
+                yart.classList.add("tiktok");
+                return yart;
+            }
+
+        }
+
+
+        // check if you've scrolled to the maximum scroll limit
+        function checkScroll() {
+            console.log(window.scrollY + "  " + maxScroll)
+            if (window.scrollY >= maxScroll-15) {
+                return true;
+            }
+            return false;
+        }
+
+        
+        // each time you scroll, check for the maximum scroll limit
+        window.addEventListener("scroll", () => {
+            if(checkScroll()) {
+                thingToDoWhenScrolled();
+            }
+        });
+
+
+        // thing you do when you've reached bottom
+        function thingToDoWhenScrolled() {
+            console.log("poop");
+                imgBlock = new TikTok()
+                var yagga = imgBlock.createSelf();
+                document.body.insertBefore(yagga, finalTok.nextSibling);
+                // this works because finalTok next sibling will be null
+
+                finalTok = yagga;
+                maxScroll += tikHeight + tikMargin;
+        }
+
+
+        // Initializes a series of tiktoks before scrolling
+        imgBlock = new TikTok();
+        const shlort = imgBlock.img;
+
+        imgBlock2 = new TikTok();
+        const shlort2 = imgBlock2.img;
+
+        imgBlock3 = new TikTok();
+        const shlort3 = imgBlock3.img;
+
+        finalTok = shlort3;
+
+        currentDiv = document.getElementById("titleBox");
+
+        document.body.insertBefore(shlort, currentDiv.nextSibling)
+        document.body.insertBefore(shlort2, shlort)
+        document.body.insertBefore(shlort3, shlort2)
     </script>
 </body>

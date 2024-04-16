@@ -1,0 +1,12 @@
+
+
+
+.tiktok {
+    width: 270;
+    height: 480;
+    outline-style: dashed;
+    outline-color: black;
+    margin: auto;
+    margin-top: 20;
+    overflow-anchor: none;
+}
