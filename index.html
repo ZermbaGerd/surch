@@ -13,42 +13,65 @@
 
     <div id = "titleBox"> 
         <h1> Welcome to my HIST394 final project </h1>
+        <a href="writeup.html">See the write-up</a>
+    </div>
+
+    <div id = "scrollBar">
+
     </div>
 
     <script>
 
         // Values for size of each tiktok - make sure these align with CSS
-        const tikHeight = 480;
-        const tikWidth = 270;
-        const tikMargin = 20;
+        const imgBlockHeight = 480;
+        const imgBlockWidth = 270;
+        const imgBlockMargin = 20;
 
         // the bottom tiktok
-        var finalTok = null;
+        var finalObj = null;
 
         // pixel amount for us to add new element after
-        var maxScroll = tikHeight;
-
+        var maxScroll = imgBlockHeight;
 
         // Represents a social media post
-        class TikTok {
+        class ImgBlock {
 
             constructor() {
-                this.img = this.createSelf();
+                this.box = this.createSelf();
+                console.log(typeof(this.box));
             }
 
             // creates and returns an html element associated with this class
             createSelf() {
-                const yart = document.createElement("div");
-                yart.classList.add("tiktok");
-                return yart;
+                const tempDiv = document.createElement("div");
+                document.getElementById("scrollBar").appendChild(tempDiv);
+                tempDiv.classList.add("imgBlock");
+                return tempDiv;
             }
 
+            addImage(img) {
+                console.log(img);
+                console.log(typeof(img));
+                this.box.appendChild(img);
+            }
+
+        }
+
+        class TikTok {
+
+            constructor(filePath) {
+                this.img = document.createElement('img');
+                this.img.src = filePath;
+                this.img.width = 1080;
+                this.img.height = 1920;
+                this.img.classList.add("tiktok");
+            }
         }
 
 
         // check if you've scrolled to the maximum scroll limit
         function checkScroll() {
-            console.log(window.scrollY + "  " + maxScroll)
+            // console.log(window.scrollY + "  " + maxScroll)
             if (window.scrollY >= maxScroll-15) {
                 return true;
             }
@@ -66,33 +89,38 @@
 
         // thing you do when you've reached bottom
         function thingToDoWhenScrolled() {
-            console.log("poop");
-                imgBlock = new TikTok()
-                var yagga = imgBlock.createSelf();
-                document.body.insertBefore(yagga, finalTok.nextSibling);
+                imgBlock = new ImgBlock();
+
+                imgNum = Math.floor(Math.random() * 17);
+
+                tikkity = new TikTok('images/image'+imgNum+'.png');
+                imgBlock.addImage(tikkity.img);
+                document.getElementById("scrollBar").appendChild(imgBlock.box);
                 // this works because finalTok next sibling will be null
 
-                finalTok = yagga;
-                maxScroll += tikHeight + tikMargin;
+                finalObj = imgBlock.box;
+                maxScroll += imgBlockHeight + imgBlockMargin;
         }
 
 
-        // Initializes a series of tiktoks before scrolling
-        imgBlock = new TikTok();
-        const shlort = imgBlock.img;
+        // Initializes a series of boxes before scrolling
+        imgBlock = new ImgBlock();
+        const shlort = imgBlock.box;
 
-        imgBlock2 = new TikTok();
-        const shlort2 = imgBlock2.img;
+        const tikkitytok = new TikTok('images/image1.png')
+        imgBlock.addImage(tikkitytok.img)
 
-        imgBlock3 = new TikTok();
-        const shlort3 = imgBlock3.img;
+        imgBlock2 = new ImgBlock();
+        const shlort2 = imgBlock2.box;
 
-        finalTok = shlort3;
+        imgBlock3 = new ImgBlock();
+        const shlort3 = imgBlock3.box;
 
-        currentDiv = document.getElementById("titleBox");
+        finalObj = shlort3;
 
-        document.body.insertBefore(shlort, currentDiv.nextSibling)
-        document.body.insertBefore(shlort2, shlort)
-        document.body.insertBefore(shlort3, shlort2)
+
+        document.getElementById("scrollBar").appendChild(shlort);
+        document.getElementById("scrollBar").appendChild(shlort2);
+        document.getElementById("scrollBar").appendChild(shlort3);
     </script>
 </body>

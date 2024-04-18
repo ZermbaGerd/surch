@@ -1,7 +1,7 @@
 
 
 
-.tiktok {
+.imgBlock {
     width: 270;
     height: 480;
     outline-style: dashed;
@@ -9,4 +9,11 @@
     margin: auto;
     margin-top: 20;
     overflow-anchor: none;
+}
+
+
+.tiktok {
+    object-fit:contain;
+    width: 270;
+    height: 480;
 }
