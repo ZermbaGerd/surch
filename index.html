@@ -7,16 +7,24 @@
     -->
     <script>history.scrollRestoration = "manual"</script>
 
+    <!-- 
+        Import some icons to use - mainly for star but I couldn't figure out how to just import that one 
+    -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://kit.fontawesome.com/e462383bcf.js" crossorigin="anonymous"></script>
+
+
+
 </head>
 
 <body>
 
     <div id = "titleBox"> 
-        <h1> Welcome to my HIST394 final project </h1>
-        <a href="writeup.html">See the write-up</a>
+        <h1 id="surchTitle"> SURCH.IO </h1>
+        <a id="writeupLink" href="writeup.html">See the write-up</a>
     </div>
 
-    <div id = "scrollBar">
+    <div id = "scrollBar"> <!-- Maybe hide this to show the visualization of your data? -->
 
     </div>
 
@@ -26,6 +34,7 @@
         const imgBlockHeight = 480;
         const imgBlockWidth = 270;
         const imgBlockMargin = 20;
+        const ratingBoxHeight = 40;
 
         // the bottom tiktok
         var finalObj = null;
@@ -55,6 +64,9 @@
                 this.box.appendChild(img);
             }
 
+            addRating(rateBox) {
+                this.box.appendChild(rateBox);
+            }
         }
 
         class TikTok {
@@ -65,6 +77,40 @@
                 this.img.width = 1080;
                 this.img.height = 1920;
                 this.img.classList.add("tiktok");
+            }
+        }
+
+        class Rating {
+            constructor() {
+                var created = this.createSelf();
+                this.box = created[0]
+                this.stars = created[1]
+                console.log(typeof(this.box));
+            }
+
+            // creates and returns an html element associated with this class
+            createSelf() {
+                const tempDiv = document.createElement("div");
+                tempDiv.classList.add("rateBox");
+                
+                var stars = [];
+                // <span class="fa-solid fa-star"></span>
+
+                for (let step = 0; step <= 4; step++) {
+                    console.log("poopity");
+
+                    stars.push(document.createElement("span"));
+                    stars[step].classList.add('fa-regular');
+                    stars[step].classList.add('fa-star');
+                    stars[step].classList.add('rate-star');
+                    stars[step].style.left = 18 + step*50;
+
+                    console.log(stars[step]);
+                    tempDiv.appendChild(stars[step]);
+                }
+                
+
+                return [tempDiv, stars];
             }
         }
 
@@ -91,32 +137,48 @@
         function thingToDoWhenScrolled() {
                 imgBlock = new ImgBlock();
 
-                imgNum = Math.floor(Math.random() * 17);
+                imgNum = Math.floor(Math.random() * 18);
 
                 tikkity = new TikTok('images/image'+imgNum+'.png');
                 imgBlock.addImage(tikkity.img);
+
+                rate = new Rating();
+                imgBlock.addRating(rate.box);
+
                 document.getElementById("scrollBar").appendChild(imgBlock.box);
                 // this works because finalTok next sibling will be null
 
                 finalObj = imgBlock.box;
-                maxScroll += imgBlockHeight + imgBlockMargin;
+                maxScroll += imgBlockHeight + imgBlockMargin + ratingBoxHeight;
+                // TODO max scroll gets fucked by weirdly-sized image blocks - fix that
         }
 
 
         // Initializes a series of boxes before scrolling
         imgBlock = new ImgBlock();
         const shlort = imgBlock.box;
+        const tikkitytok = new TikTok('images/welcomeMsg.png');
+        imgBlock.addImage(tikkitytok.img);
+        const rating = new Rating();
+        imgBlock.addRating(rating.box);
 
-        const tikkitytok = new TikTok('images/image1.png')
-        imgBlock.addImage(tikkitytok.img)
 
         imgBlock2 = new ImgBlock();
         const shlort2 = imgBlock2.box;
+        const yort = new TikTok('images/welcomeMsg.png');
+        imgBlock2.addImage(yort.img);
+        const rating2 = new Rating();
+        imgBlock2.addRating(rating2.box);
+
 
         imgBlock3 = new ImgBlock();
         const shlort3 = imgBlock3.box;
+        const shoop = new TikTok('images/welcomeMsg.png');
+        imgBlock3.addImage(shoop.img);
+        const rating3 = new Rating();
+        imgBlock3.addRating(rating3.box);
 
-        finalObj = shlort3;
+        finalObj = shlort;
 
 
         document.getElementById("scrollBar").appendChild(shlort);

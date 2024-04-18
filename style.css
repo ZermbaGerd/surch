@@ -1,19 +1,72 @@
+:root {
+    font-family: "Lucida Console", monospace;
+    --bg-color: black;
+    --main-color: #ff69f3;
+    --secondary-color: #12F4FD;
 
+    --block-width: 270;
+    --block-height: 480;
 
+    --rate-height: 40;
+}
 
-.imgBlock {
-    width: 270;
-    height: 480;
-    outline-style: dashed;
-    outline-color: black;
-    margin: auto;
-    margin-top: 20;
-    overflow-anchor: none;
+body {
+    background-color: var(--bg-color);
+}
+
+#titleBox {
+    position:absolute;
+    right: 25px;
+    top: 0px;
+}
+
+#surchTitle {
+    color: var(--main-color);
+    margin-bottom: 0px;
+}
+
+#writeupLink {
+    color: var(--secondary-color);
+    margin-top: 0px;
 }
 
 
+.imgBlock {
+    width: var(--block-width);
+    height: var(--block-height) + var(--rate-height);
+    outline-style: dashed;
+    outline-color: white;
+    outline-width: 1px;
+    margin: auto;
+    margin-top: 20;
+    overflow-anchor: none;  /* Maybe necessary to stop infinite scrolling? */
+}
+
+.rateBox {
+    color: var(--primary-color);
+    width: var(--block-width);
+    height: var(--rate-height);
+    position: relative;
+    outline-style: dashed;
+    outline-color: var(--secondary-color);
+    outline-width: 1px;
+}
+
 .tiktok {
+    /* Got the logic to fit them in boxes from ChatGPT */
     object-fit:contain;
-    width: 270;
-    height: 480;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.fa-star {
+    color: var(--secondary-color);
+    font-size: 30px;
+}
+
+.rate-star {
+    position: absolute;
+    top: 5px;
 }
