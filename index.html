@@ -83,34 +83,42 @@
         class Rating {
             constructor() {
                 var created = this.createSelf();
-                this.box = created[0]
-                this.stars = created[1]
+                this.box = created
                 console.log(typeof(this.box));
             }
 
             // creates and returns an html element associated with this class
             createSelf() {
-                const tempDiv = document.createElement("div");
-                tempDiv.classList.add("rateBox");
+                const box = document.createElement("div");
+                box.classList.add("rateBox");
                 
-                var stars = [];
-                // <span class="fa-solid fa-star"></span>
-
                 for (let step = 0; step <= 4; step++) {
-                    console.log("poopity");
 
-                    stars.push(document.createElement("span"));
-                    stars[step].classList.add('fa-regular');
-                    stars[step].classList.add('fa-star');
-                    stars[step].classList.add('rate-star');
-                    stars[step].style.left = 18 + step*50;
+                    var star = document.createElement("span");
+                    star.classList.add('fa-regular');
+                    star.classList.add('fa-star');
+                    star.classList.add('rate-star');
 
-                    console.log(stars[step]);
-                    tempDiv.appendChild(stars[step]);
+                    var starHolder = document.createElement("btn");
+                    // starHolder.innerHTML = '<i class = "fa-solid fa-star">';
+                    starHolder.appendChild(star);
+
+                    starHolder.classList.add("star-holder");
+                    starHolder.classList.add(step);
+
+                    (function(star) {
+                        starHolder.onclick =  (() => {
+                        star.classList.toggle('fa-solid');
+                        star.classList.toggle('fa-regular');
+                        });
+                    })(star);
+
+                    starHolder.style.left = 18 + step*50;
+
+                    box.appendChild(starHolder);
                 }
                 
-
-                return [tempDiv, stars];
+                return box;
             }
         }
 
