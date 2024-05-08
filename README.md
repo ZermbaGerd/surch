@@ -1,3 +1,1 @@
-Show that you know the readings
-That you understand the ideas
-And that you're doing something unique with it
+The final project for my Spring 2024 HIST394 (History of Racism and Digital Technology) class with Walter Greason.
