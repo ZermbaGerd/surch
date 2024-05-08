@@ -3,13 +3,660 @@
 </head>
 
 <body>
+    <div id = "titleBox"> 
+        <a href="imageViz.html" style="position:absolute; top: 5px; right: 20px;">Image list</a>
+    </div>
+
     <a href="index.html"> Back to doomscrolling.</a>
 
+    <p> 
+        This project was created as part of my final project for my History of Racism and Digital Technology (HIST394) class, 
+        taken at Macalester College with Professor Walter Greason.
+    </p>
 
-    <p> Here are the ways that algorithms can limit your thought-space. 
-        Want to emphasize the ways that social media algorithms differ from search.
-        Also want to talk about specific social/privilege circumstances that apply to that</p>
+    <p>
+        For any linked Google Slides resource, the speaker notes will contain citations and a basic user guide to the content on the slide.
+    </p>
+    
+    <p> 
+        To see the final photographic essay I produced for the class, click <a href="https://docs.google.com/presentation/d/1j95UUauor5HeBrmdeu5eTg6KH_sOAclBaeTwRBs3hYU/"> here</a>. 
+        It's generally a commentary on the prevalence of digital surveillance, the impacts of such surveillance, and resistance (both creative and destructive) to that surveillance.
+    </p>
 
+    <p> If you're interested in some of the other work I've created for this class, you can see my mid-term review essay of Safiya Umoja Noble's
+        Algorithms of Oppression <a href="https://docs.google.com/document/d/1zAmzDDLL1jvDDlWyPk6cFSoFNe_puBpZunXtsiOVBbo/edit?usp=sharing"> here</a>,
+        and you can see my final essay, where I compared the arguments in that book with Ruha Benjamin's arguments in her book Race After Technology
+        <a href="https://docs.google.com/document/d/1RpLMTntxhDU2ot_q22o6iLvOiYUe4WeqyR5bTJ9fUKI/edit?usp=sharing"> here</a>.
+    </p>
 
-    Make it sexy!
+    <p>
+        The central argument I wanted to discuss in my final project revolves around the various ways that social recommendation algorithms,
+        like the TikTok For You Page (FYP), YouTube Recommended, and Netflix recommendations, operate. I found myself struck by the prevalence
+        of subcultures on TikTok. Many users' FYP's create extraordinarily insulated communities, where a single joke or soundtrack
+        appears in 20 - 40% of every TikTok they see, despite making up only a miniscule portion of the overall content on the platform.
+    </p>
+
+    <p>
+        These communities are prime to become echo chambers, which are not only capable of fomenting extremism and violence, but are also harmful
+        for the ways that they limit people's imaginations. When there are massive, massive portions of social activity happening completely
+        out of your view, it becomes very difficult to imagine possible futures that serve the participants in those conversations. This imagination
+        is vitally important for our future, because we can only create a world that functions differently to our own when we can imagine that world.
+        I was particularly inspired by the fields of futurism and Afrofuturism.
+    </p>
+
+    <p>
+        In this project, I wanted to bring attention to these unexplored horizons by reversing the typical strategy of recommendation algorithms. 
+        Instead of finding the content that the user wouldn't like, and then hiding that content from them, I wanted to show them that content, 
+        but explicitly censor portions of it, depending on how "relevant" the algorithm considered the content. I was inspired by the SCP online fiction community 
+        (particularly the series of <a href="https://scp-wiki.wikidot.com/antimemetics-division-hub">There is No Anti-Memetics Division</a> stories), where censorship 
+        is used as a tool to tell more compelling stories, and place the reader within the universe. In this way, censorship brings attention to the censored content,
+        instead of hiding it.
+    </p>
+
+    <p>
+        Due to some time constraints, as well as some slightly lofty goals, I wasn't able to execute on every part of this plan. 
+        Despite that, I'm still pretty happy with what I've produced. Most of the censorship visuals were packaged into my final 
+        photographic essay. The website currently just shows randomly selected images, not actually implementing a recommendation 
+        algorithm, but I've explored the implementation of an algorithm enough that I have some other resources available.
+    </p>
+
+    <br></br>
+
+    <p>
+        With that in mind, let's look at some of the most common recommendation algorithms and see what we can learn.
+        These algorithms generally break down into two types: content-based filtering and collaborative filtering. I'll focus
+        more on collaborative filtering, because that's where the implementation for this project would have gone, and is also
+        the strategy that most services rely on.
+    </p>
+
+    <br> </br>
+
+    <p>
+        Content-based filtering: 
+    </p>
+    <p style="margin-top: 10px">    
+        In content-based filtering, each item has a series of tags. For instance, a movie
+        might be tagged as "drama", "action", or "more than 90 minutes". Then, when a user interacts with an item,
+        they are simply recommended more items that share tags with that item. This style of filtering is usually
+        used when there a fairly limited set of items, and it's possible to manually tag each item. When there are 
+        more items, designers sometimes ask users to tag items themselves, using hashtags.
+        <br> </br>
+        In these systems, the designers don't know or remember any information about users or their behavior. These 
+        systems are also fairly limited in their actual application, considering most recommendation systems are intended
+        to recommend for specific users with specific behavior. You might recognize these systems in services like IKEA, 
+        or other shopping websites.
+    </p>
+    
+    <br></br>
+
+    <p>
+        Collaborative filtering: 
+    </p>
+    <p style="margin-top: 10px">
+        In collaborative filtering, items do not have any tags. Instead, the system remembers
+        each users' interactions with each item, and then uses those interactions to identify similar users. Once it has
+        recognized these similarities, it recommends users' items that other similar users have interacted with. This 
+        type of system can be beneficial for designers, because the designers of the system don't need to know any
+        information about the items.
+
+        <br> </br>
+        I've created a visualization of how this logic operates on a more technical level, which you can see 
+        <a href="https://docs.google.com/presentation/d/1MQ1n-UeYwrBW7ot11Jf-7LYqujrdRcRwX6wxCGPQr0k/edit?usp=sharing">here.</a>
+
+        <br> </br>
+        In naive implementations of these systems, the designers might only remember ratings, but in more advanced versions,
+        like the ones used in TikTok, YouTube, and most social medias, they can remember much more information. For instance,
+        they might remember view-time, likes, comments, shares to other sites, or other interaction metrics. They might also
+        use demographic data that has been provided to them by the user or by third-party information brokers.
+
+        <br> </br>
+        One of the consequences of this approach is that the amount of data stored can become unwieldy. For instance, if you
+        had 1,000 users and 1,000 items, you would need to remember slots for 1,000,000 interactions. If you had 1,000,000 users
+        and 1,000,000 items, you would need to remember 1,000,000,000,000 (one trillion) interactions. Notably, most of these
+        interactions will be empty, because each user will probably not interact with each item.
+
+        <br> </br>
+        Designers have many options to solve this problem. Notably, they can use matrix factorization and machine learning. In 
+        most complicated systems, developers try to mimick the item-tagging from content-based filtering by using statistical
+        models and artificial intelligence to 'guess' some tags associated with items.  One of the consequences of this approach 
+        is that the actual meanings of these tags are not visible to the designers. They'll receive a tag that looks like: 
+        "latent-factor-1: 0.57628", and have to accept that it contains some level of meaning that enables their system to give 
+        more specific recommendations.
+    </p>
+
+    <br> </br>
+    <br> </br>
+
+    <p>
+        If I were to work more on this project, I would implement a basic collaborative filtering algorithm, using a series
+        of sample interactions I've already received by surveying some of my classmates. That data can be seen below. If you're
+        interested in seeing which images correspond to which numbers, check out the <a href="imageViz.html">image list</a>.
+    </p>
+
+    <br> </br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>uuid</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th>15</th>
+                <th>16</th>
+                <th>17</th>
+                <th>18</th>
+                <th>19</th>
+                <th>20</th>
+                <th>21</th>
+                <th>22</th>
+                <th>23</th>
+                <th>24</th>
+                <th>25</th>
+                <th>26</th>
+                <th>27</th>
+                <th>28</th>
+                <th>29</th>
+                <th>30</th>
+                <th>31</th>
+                <th>32</th>
+                <th>33</th>
+                <th>34</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>001</td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td></td>
+                <td>5</td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>002</td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>3</td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td>4</td>
+                <td></td>
+                <td>2</td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>004</td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td>4</td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>005</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td>4</td>
+                <td></td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>006</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td>5</td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td>5</td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td>1</td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>007</td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td>1</td>
+                <td></td>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+                <td></td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>008</td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>5</td>
+                <td>5</td>
+                <td></td>
+                <td>5</td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td></td>
+                <td>3</td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>009</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td>5</td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td>1</td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>010</td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>011</td>
+                <td></td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td>5</td>
+                <td>3</td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td>4</td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>012</td>
+                <td>2</td>
+                <td>2</td>
+                <td></td>
+                <td>3</td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td>4</td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>013</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td>3</td>
+                <td>3</td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>5</td>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td></td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
 </body>

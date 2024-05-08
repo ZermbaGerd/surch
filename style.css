@@ -80,3 +80,37 @@ body {
     top: 5px;
     z-index: 1;
 }
+
+p {
+    color: lightgrey;
+    margin: auto;
+    margin-top: 20px;
+    width: 80%;
+    line-height: 115%;
+    font-size: large;
+}
+
+th {
+    color: lightgrey;
+}
+
+td {
+    color: lightgrey;
+}
+
+table {
+    margin: auto;
+    width: 80%;
+}
+
+a:link {
+    color: var(--secondary-color);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: var(--secondary-color);
+    background-color: transparent;
+    text-decoration: none;
+}

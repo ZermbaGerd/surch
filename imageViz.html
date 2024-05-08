@@ -1,0 +1,125 @@
+<head>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- 
+        Stops your browser from trying to move back to scroll spot on reload 
+        Got this from here: https://stackoverflow.com/a/46722645
+    -->
+    <script>history.scrollRestoration = "manual"</script>
+
+    <!-- 
+        Import some icons to use - mainly for star but I couldn't figure out how to just import that one 
+    -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://kit.fontawesome.com/e462383bcf.js" crossorigin="anonymous"></script>
+
+
+
+</head>
+
+<body>
+
+    <a href="writeup.html"> Back to the write-up.</a>
+
+
+    <div id = "scrollBar"> <!-- Maybe hide this to show the visualization of your data? -->
+
+    </div>
+
+    <script>
+
+        // Values for size of each tiktok - make sure these align with CSS
+        const imgBlockHeight = 480;
+        const imgBlockWidth = 270;
+        const imgBlockMargin = 20;
+        const ratingBoxHeight = 40;
+
+        // the bottom tiktok
+        var finalObj = null;
+
+        // pixel amount for us to add new element after
+        var maxScroll = imgBlockHeight;
+
+        // Represents a social media post
+        class ImgBlock {
+
+            constructor() {
+                this.box = this.createSelf();
+                console.log(typeof(this.box));
+            }
+
+            // creates and returns an html element associated with this class
+            createSelf() {
+                const tempDiv = document.createElement("div");
+                document.getElementById("scrollBar").appendChild(tempDiv);
+                tempDiv.classList.add("imgBlock");
+                return tempDiv;
+            }
+
+            addImage(img) {
+                console.log(img);
+                console.log(typeof(img));
+                this.box.appendChild(img);
+            }
+
+            addRating(rateBox) {
+                this.box.appendChild(rateBox);
+            }
+        }
+
+        class TikTok {
+
+            constructor(filePath) {
+                this.img = document.createElement('img');
+                this.img.src = filePath;
+                this.img.width = 1080;
+                this.img.height = 1920;
+                this.img.classList.add("tiktok");
+            }
+        }
+
+        class Number {
+            constructor(number) {
+                var created = this.createSelf(number);
+                this.box = created
+                console.log(typeof(this.box));
+            }
+
+            // creates and returns an html element associated with this class
+            createSelf(number) {
+                const box = document.createElement("div");
+                
+                var starHolder = document.createElement("p");
+                starHolder.innerText = "Image #" + number;
+
+                box.appendChild(starHolder);
+                
+                return box;
+            }
+        }
+
+
+        // check if you've scrolled to the maximum scroll limit
+        function generateItems() {
+            for(var i = 1; i < 35; i++) {
+                createItem(i);
+            }
+        }
+
+        // thing you do when you've reached bottom
+        function createItem(imgNum) {
+                imgBlock = new ImgBlock();
+
+                tikkity = new TikTok('images/image'+imgNum+'.png');
+                imgBlock.addImage(tikkity.img);
+
+                number = new Number(imgNum);
+                imgBlock.addRating(number.box);
+
+                document.getElementById("scrollBar").appendChild(imgBlock.box);
+                // this works because finalTok next sibling will be null
+        }
+
+        generateItems();
+    </script>
+</body>
