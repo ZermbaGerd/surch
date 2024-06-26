@@ -17,10 +17,10 @@ body {
     background-color: var(--bg-color);
 }
 
-#titleBox {
-    position:absolute;
-    right: 25px;
+.titleBox {
     top: 0px;
+    position: sticky;
+    position: -webkit-sticky;
 }
 
 #surchTitle {
@@ -30,7 +30,9 @@ body {
 
 #writeupLink {
     color: var(--secondary-color);
-    margin-top: 0px;
+    /* margin-top: 0px; */
+    top: 0;
+
 }
 
 
